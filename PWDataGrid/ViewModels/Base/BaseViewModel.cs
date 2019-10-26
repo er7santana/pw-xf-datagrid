@@ -1,10 +1,7 @@
-﻿using System;
-namespace PWDataGrid.ViewModels.Base
+﻿namespace PWDataGrid.ViewModels
 {
-    public class BaseViewModel
+    public class BaseViewModel : FreshMvvm.FreshBasePageModel
     {
-        public BaseViewModel()
-        {
-        }
+        public bool IsBusy { get; set; }
     }
 }

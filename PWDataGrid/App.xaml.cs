@@ -1,4 +1,5 @@
 ﻿using System;
+using PWDataGrid.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +10,23 @@ namespace PWDataGrid
         public App()
         {
             InitializeComponent();
+            Xamarin.Forms.DataGrid.DataGridComponent.Init();
 
-            MainPage = new MainPage();
+            InitializeIoC();
+            InitializeNavigation();
+        }
+
+        void InitializeIoC()
+        {
+
+        }
+
+        void InitializeNavigation()
+        {
+            var mainPage = FreshMvvm.FreshPageModelResolver.ResolvePageModel<MainViewModel>();
+            var mainContainer = new FreshMvvm.FreshNavigationContainer(mainPage);
+
+            MainPage = mainContainer;
         }
 
         protected override void OnStart()
