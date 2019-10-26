@@ -27,6 +27,11 @@ namespace PWDataGrid.ViewModels
 
         void Save()
         {
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                Columns[i].Order = i;
+            }
+
             CoreMethods.PopPageModel(Columns);
         }
     }

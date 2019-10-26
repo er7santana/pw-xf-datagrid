@@ -1,10 +1,44 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PWDataGrid.Pages.ColumnsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PWDataGrid.Pages.ColumnsPage"
+             xmlns:superControls="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
+             xmlns:ctrl="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Label Text="Columns" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+        <Grid Padding="16" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Text="Customize Columns" FontSize="Title" />
+
+            <superControls:HorizontalListView Grid.Row="1"
+                                              x:Name="lstComponentes"
+                                              ItemsSource="{Binding Columns}"
+                                              ListLayout="Grid"
+                                              EnableDragAndDrop="True"                                              
+                                              ItemHeight="70"
+                                              ColumnCount="1"
+                                              ItemSpacing="0"
+                                              BackgroundColor="White">
+                <superControls:HorizontalListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <superControls:DraggableViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <ctrl:CheckBox Text="{Binding Title}" HorizontalOptions="Start" BoxBackgroundColor="Transparent" TextFontSize="20"
+                                                   Type="Check" IsChecked="{Binding IsVisible}" />
+
+                            </StackLayout>
+                        </superControls:DraggableViewCell>
+                    </DataTemplate>
+                </superControls:HorizontalListView.ItemTemplate>
+            </superControls:HorizontalListView>
+
+        </Grid>
     </ContentPage.Content>
+
 </ContentPage>
